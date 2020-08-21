@@ -70,7 +70,7 @@ export class InputsComponent implements OnInit {
     this.media = 0;
     for(var s=0; s<= this.N+this.N2; s++) {
       this.sueltas.push(this.prob2(s, this.N, this.p, this.N2, this.p2));
-      this.media += s*this.prob2(s, this.N, this.p,N2, this.p2);
+      this.media += s*this.prob2(s, this.N, this.p, this.N2, this.p2);
     }
     this.acumuladas = this.acumula(this.sueltas);
   }
