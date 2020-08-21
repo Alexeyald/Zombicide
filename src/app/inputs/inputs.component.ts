@@ -7,12 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputsComponent implements OnInit {
 
+  N = 4;
+  p = 1/2;
+  N2 = 1;
+  p2 = 1;
+  sueltas = [];
+  acumuladas = [];
+  media = 0;
+
   constructor() { }
 
   ngOnInit(): void {
+    for(var s=0; s<= this.N+this.N2; s++) {
+      this.sueltas.push(this.prob2(s, this.N, this.p, this.N2, this.p2));
+      this.media += s*this.prob2(s, this.N, this.p, this.N2, this.p2);
+    }
+    this.acumuladas = this.acumula(this.sueltas);
   }
 
-  testv = 'hiiiii';
 
   factorial(n){
     if(n===0) {
@@ -49,6 +61,18 @@ export class InputsComponent implements OnInit {
   calculaProb(n) { // calcula la probabilidad de sacar n o más en una tirada de un solo dado.
     if(n<1 || n>6) { return(0) }
     return (7-n)/6 
+  }
+
+  update() {
+
+    this.sueltas = [];
+    this.acumuladas = [];
+    this.media = 0;
+    for(var s=0; s<= this.N+this.N2; s++) {
+      this.sueltas.push(this.prob2(s, this.N, this.p, this.N2, this.p2));
+      this.media += s*this.prob2(s, this.N, this.p,N2, this.p2);
+    }
+    this.acumuladas = this.acumula(this.sueltas);
   }
 
 }
