@@ -5,9 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './inputs.component.html',
   styleUrls: ['./inputs.component.scss']
 })
+
 export class InputsComponent implements OnInit {
 
-  N = 4;
+  N = 6;
   p = 1/2;
   N2 = 1;
   p2 = 1;

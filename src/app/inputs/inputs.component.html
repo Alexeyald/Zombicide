@@ -1,1 +1,4 @@
-<p>{{sueltas}}</p>
+<p>{{ sueltas }}</p>
+<mat-list role="list" *ngFor="let x of sueltas">
+  <mat-list-item role="listitem">{{ x }}</mat-list-item>
+</mat-list>
