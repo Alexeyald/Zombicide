@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-inputs',
@@ -8,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 
 export class InputsComponent implements OnInit {
 
-  N = 6;
+  N = 0;
   p = 1/2;
-  N2 = 1;
+  N2 = 0;
   p2 = 1;
   sueltas = [];
   acumuladas = [];
   media = 0;
+  tabla = [];
+  displayedColumns = ["N", "Acumuladas", "Sueltas"];
+  dice = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   constructor() { }
 
@@ -23,7 +27,8 @@ export class InputsComponent implements OnInit {
       this.sueltas.push(this.prob2(s, this.N, this.p, this.N2, this.p2));
       this.media += s*this.prob2(s, this.N, this.p, this.N2, this.p2);
     }
-    this.acumuladas = this.acumula(this.sueltas);
+    this.acumuladas = this.acumula(this.sueltas).reverse();
+    this.createTable();
   }
 
 
@@ -65,7 +70,6 @@ export class InputsComponent implements OnInit {
   }
 
   update() {
-
     this.sueltas = [];
     this.acumuladas = [];
     this.media = 0;
@@ -74,6 +78,13 @@ export class InputsComponent implements OnInit {
       this.media += s*this.prob2(s, this.N, this.p, this.N2, this.p2);
     }
     this.acumuladas = this.acumula(this.sueltas);
+    this.createTable();
+  }
+
+  createTable() {
+    for(var i=0; i<this.sueltas.length; i++) {
+      this.tabla.push( {N: i, Acumuladas: this.acumuladas[i], Sueltas: this.sueltas[i]} )
+    }
   }
 
 }

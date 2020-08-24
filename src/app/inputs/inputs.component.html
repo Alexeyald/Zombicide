@@ -1,4 +1,56 @@
-<p>{{ sueltas }}</p>
-<mat-list role="list" *ngFor="let x of sueltas">
-  <mat-list-item role="listitem">{{ x }}</mat-list-item>
-</mat-list>
+<p>Arma 1 : 
+  <mat-form-field appearance="fill" [style.width.px]="120">
+    <mat-label>No.</mat-label>
+    <mat-select [(value)]="N" onchange="update()">
+      <mat-option *ngFor="let n of dice" [value]="n">
+        {{ n }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" [style.width.px]="120">
+    <mat-label>Min</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let n of dice" [value]="n">
+        {{ n }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+
+<p>Arma 2 : 
+  <mat-form-field appearance="fill" [style.width.px]="120">
+    <mat-label>No.</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let n of dice" [value]="n">
+        {{ n }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" [style.width.px]="120">
+    <mat-label>Min</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let n of dice" [value]="n">
+        {{ n }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+
+<mat-table class="lessons-table mat-elevation-z8" [dataSource]="tabla">
+  <ng-container matColumnDef="N">
+    <mat-header-cell *matHeaderCellDef> X </mat-header-cell>
+    <mat-cell *matCellDef="let r"> {{ r.N }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Acumuladas">
+    <mat-header-cell *matHeaderCellDef> Prob Kills >= X </mat-header-cell>
+    <mat-cell *matCellDef="let r"> {{ r.Acumuladas }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="Sueltas">
+    <mat-header-cell *matHeaderCellDef> Prob Kills = X </mat-header-cell>
+    <mat-cell *matCellDef="let r"> {{ r.Sueltas }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
